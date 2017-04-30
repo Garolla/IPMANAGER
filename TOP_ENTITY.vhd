@@ -20,8 +20,7 @@ entity TOP_ENTITY is
 			generic_en_IPs	: in std_logic_vector(NUM_IPS-1 downto 0);	
 			enable_IPs		: out std_logic_vector(NUM_IPS-1 downto 0);	
 			ack_IPs			: out std_logic_vector(NUM_IPS-1 downto 0);	
-			interrupt_IPs	: out std_logic_vector(NUM_IPS-1 downto 0);
-			interrupt		: out std_logic;
+			interrupt_IPs	: out std_logic_vector(NUM_IPS-1 downto 0)
 			);
 end entity TOP_ENTITY;
 
@@ -39,11 +38,11 @@ architecture STRUCTURAL of TOP_ENTITY is
 				GE_CPU			: in std_logic;
 			
 				--PORT_1
-				data_io		  	: inout std_logic_vector (DATA_WIDTH-1 downto 0);
+				data_ip		  	: inout std_logic_vector (DATA_WIDTH-1 downto 0);
 				address_ip     	: in std_logic_vector(ADD_WIDTH-1 downto 0);
-				WE_CPU 			: in std_logic;
-				RE_CPU  		: in std_logic;
-				GE_CPU			: in std_logic
+				WE_IP 			: in std_logic;
+				RE_IP 	 		: in std_logic;
+				GE_IP			: in std_logic
 				);
 	end component DATA_BUFFER;
 
