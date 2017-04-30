@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+use ieee.std_logic_arith.all;
 use work.CONSTANTS.all;
 
 entity IP_MANAGER is
@@ -27,20 +28,7 @@ entity IP_MANAGER is
 end entity IP_MANAGER;
 
 architecture BEHAVIOURAL of IP_MANAGER is
-	--TODO
-	
-function one_hot_to_binary (
-    One_Hot : std_logic_vector
-  ) return integer is
 
-begin
-	for I in One_Hot'range loop
-		if One_Hot(I) = '1' then
-			return I-1;
-		end if;
-	end loop;
-end function;
-  
 begin
 	PROC_1: process (clk, rst)
 	begin  -- process Clk
@@ -58,14 +46,14 @@ begin
 		if row_0(11 downto 0) /= "000000000000" then	-- NOT configuration mode
 			if row_0(13) = '0' then						-- Normal mode
 				if row_0(12) = '1' then					-- begin 
-					enable_IPs(one_hot_to_binary(row_0(11 downto 0)))		<= '1';
-					data 													<= data_IPs(one_hot_to_binary(row_0(11 downto 0)));
-					add_in 													<= add_in_IPs(one_hot_to_binary(row_0(11 downto 0)));
-					W_enable 												<= W_enable_IPs(one_hot_to_binary(row_0(11 downto 0)));
-					R_enable 												<= R_enable_IPs(one_hot_to_binary(row_0(11 downto 0)));
-					generic_en 												<= generic_en_IPs(one_hot_to_binary(row_0(11 downto 0)));
+					enable_IPs(conv_integer(row_0(11 downto 0)))		<= '1';
+					data 													<= data_IPs(conv_integer(row_0(11 downto 0)));
+					add_in 													<= add_in_IPs(conv_integer(row_0(11 downto 0)));
+					W_enable 												<= W_enable_IPs(conv_integer(row_0(11 downto 0)));
+					R_enable 												<= R_enable_IPs(conv_integer(row_0(11 downto 0)));
+					generic_en 												<= generic_en_IPs(conv_integer(row_0(11 downto 0)));
 				else									-- end
-					enable_IPs(one_hot_to_binary(row_0(11 downto 0))) 		<= '0';
+					enable_IPs(conv_integer(row_0(11 downto 0))) 		<= '0';
 					data											 		<= (others => '0');
 					add_in											 		<= (others => '0');
 					W_enable 												<= '0';
