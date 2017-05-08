@@ -28,8 +28,31 @@ architecture BEHAVIOURAL of DATA_BUFFER is
 	-- 64 x 16 buffer
 	type mem_type is array (0 to (2**ADD_WIDTH)-1) of std_logic_vector(DATA_WIDTH-1 downto 0);
 	signal mem : mem_type;
+	signal tmp_cpu	:  std_logic_vector (DATA_WIDTH-1 downto 0);
+	signal tmp_ip	:  std_logic_vector (DATA_WIDTH-1 downto 0);
 	
 begin
-	--TODO
 
+	-- Memory Write Block
+  MEM_WRITE: process (data_cpu, address_cpu, WE_CPU, GE_CPU, data_ip, address_ip, WE_IP, GE_IP ) begin
+    if (GE_CPU = '1' and WE_CPU = '1') then
+		mem(conv_integer(address_cpu)) <= data_cpu;
+	elsif (GE_IP = '1' and WE_IP = '1') then
+		mem(conv_integer(address_ip)) <= data_ip;
+    end if;
+  end process;
+
+	-- Tri-State Buffer control
+  data_cpu	<= tmp_cpu when (GE_CPU = '1' and RE_CPU = '1' and WE_CPU = '0') else (others=>'Z');
+  data_ip	<= tmp_ip when (GE_IP = '1' and RE_IP = '1' and WE_IP = '0') else (others=>'Z');
+  
+	-- Memory Read Block
+  MEM_READ: process (address_cpu, GE_CPU, RE_CPU, WE_CPU, address_ip, GE_IP, RE_IP, WE_IP, mem) begin
+    if (GE_CPU = '1' and RE_CPU = '1' and WE_CPU = '0') then
+      tmp_cpu <= mem(conv_integer(address_cpu));
+    end if;
+    if (GE_IP = '1' and RE_IP = '1' and WE_IP = '0') then
+      tmp_ip <= mem(conv_integer(address_ip));
+    end if;
+		
 end architecture;
