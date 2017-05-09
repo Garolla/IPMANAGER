@@ -8,7 +8,7 @@ entity DATA_BUFFER is
 	port(	
 
 		clk, rst        : in std_logic;		
-		row_0		: out std_logic_vector (DATA_WIDTH-1 downto 0); -- First line of the buffer. Must be read constantly by the ip manager
+		row_0		: inout std_logic_vector (DATA_WIDTH-1 downto 0); -- First line of the buffer. Must be read constantly by the ip manager
 		--PORT_0
 		data_cpu	: inout std_logic_vector (DATA_WIDTH-1 downto 0);
 		address_cpu     : in std_logic_vector(ADD_WIDTH-1 downto 0);
@@ -55,5 +55,6 @@ begin
     if (GE_IP = '1' and RE_IP = '1' and WE_IP = '0') then
       tmp_ip <= mem(conv_integer(address_ip));
     end if;
+  end process;
 		
 end architecture;
