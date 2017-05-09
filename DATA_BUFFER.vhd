@@ -1,26 +1,27 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
 use work.CONSTANTS.all;
 
 entity DATA_BUFFER is
 	port(	
 
 		clk, rst        : in std_logic;		
-		row_0			: out std_logic_vector (DATA_WIDTH-1 downto 0); -- First line of the buffer. Must be read constantly by the ip manager
+		row_0		: out std_logic_vector (DATA_WIDTH-1 downto 0); -- First line of the buffer. Must be read constantly by the ip manager
 		--PORT_0
-		data_cpu		: inout std_logic_vector (DATA_WIDTH-1 downto 0);
+		data_cpu	: inout std_logic_vector (DATA_WIDTH-1 downto 0);
 		address_cpu     : in std_logic_vector(ADD_WIDTH-1 downto 0);
-		WE_CPU 			: in std_logic;
-		RE_CPU 			: in std_logic;
-		GE_CPU			: in std_logic;
+		WE_CPU 		: in std_logic;
+		RE_CPU 		: in std_logic;
+		GE_CPU		: in std_logic;
 		
 		--PORT_1
-		data_ip		  	: inout std_logic_vector (DATA_WIDTH-1 downto 0);
+		data_ip		: inout std_logic_vector (DATA_WIDTH-1 downto 0);
 		address_ip     	: in std_logic_vector(ADD_WIDTH-1 downto 0);
-		WE_IP 			: in std_logic;
+		WE_IP 		: in std_logic;
 		RE_IP  		: in std_logic;
-		GE_IP			: in std_logic
+		GE_IP		: in std_logic
 		);
 end entity DATA_BUFFER;
 
