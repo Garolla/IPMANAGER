@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
 use work.CONSTANTS.all;
 
 entity DATA_BUFFER is
@@ -54,5 +55,5 @@ begin
     if (GE_IP = '1' and RE_IP = '1' and WE_IP = '0') then
       tmp_ip <= mem(conv_integer(address_ip));
     end if;
-		
+  end process;
 end architecture;
