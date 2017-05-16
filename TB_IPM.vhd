@@ -43,7 +43,7 @@ architecture beh of TB_IPM is
 	signal enable_IPs, ack_IPs : std_logic_vector(NUM_IPS-1 downto 0);
 
 	-- clocks --
-	constant clk_period : time := 6 ns;
+	constant clk_period : time := 1 ns;
 
 begin
 
@@ -62,6 +62,43 @@ begin
 		clk <= '1';
 		wait for clk_period/2;
 	end process;	
-	
-	-- TODO: test process
+
+		
+	-- test process
+	test_process : process
+	begin
+		rst <= '1';
+		wait 12 ns;
+		rst <= '0';
+		wait 12 ns;
+		-- write a control word
+		-- begin transaction IP 7
+		row_0 <= "0001000000000111";
+		-- write some random data
+		data  <= "0100110101101010";
+		-- ENABLE_7 should go to 1
+		wait 5 ns;
+		-- IP 7 tries to read data
+		R_enable_IPs(7) <= '1';		
+		-- we expect to see the data on data_IPs(7)
+		wait 12 ns;
+		-- IP 7 attempts a write
+		R_enable_IPs(7) <= '0';
+		W_enable_IPs(7) <= '1';		
+		data_IPs(7) 	 <= "1001010111010001";
+		-- we expect to see the data on "data" 
+		wait 12 ns;
+		-- IP 4 attempts a write: nothing should happen!
+		W_enable_IPs(4) <= '1';
+		data_IPs(1) 	 <= "1111000011110000";
+		wait 4 ns;
+		-- IP 8 attempts a read: nothing should happen!
+		W_enable_IPs(4) <= '0';		
+		R_enable_IPs(8) <= '1';
+		wait 4 ns;
+
+		-- CPU decides to end transaction
+		row_0 <= "0000000000000111";
+		-- ENABLE_7 should go to 0
+	end process;
 end;
