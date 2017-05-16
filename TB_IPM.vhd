@@ -97,8 +97,27 @@ begin
 		R_enable_IPs(8) <= '1';
 		wait 4 ns;
 
+
+		-- IP 3 attempts to send an interrupt: nothing should happen
+		interrupt_IPs(3) <= '1';
+
+
 		-- CPU decides to end transaction
 		row_0 <= "0000000000000111";
 		-- ENABLE_7 should go to 0
+
+		---- interrupt test ----
+		-- the IPM should now recognise the interrupt from IP 3.
+		wait until interrupt = '1';
+		wait 3 ns;
+		-- send the ack by setting bit 13
+		row_0 <= "0010000000000000";
+		-- we expect ACK_3 to go to 1
+		wait until ack_IPs(3) = '1';
+		interrupt_IPs(3) <= '0';
+		
+		
+
+		
 	end process;
 end;
