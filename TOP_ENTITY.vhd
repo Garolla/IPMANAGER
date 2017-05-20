@@ -48,24 +48,26 @@ architecture STRUCTURAL of TOP_ENTITY is
 
 	component IP_MANAGER is
 		port(	
-				clk, rst        : in std_logic;		
-				data			: inout std_logic_vector (DATA_WIDTH-1 downto 0);
-				add_in       	: out std_logic_vector(ADD_WIDTH-1 downto 0);
-				W_enable 		: out std_logic;
-				R_enable 		: out std_logic;
-				generic_en		: out std_logic;
-				interrupt		: out std_logic;
-
-				row_0			: inout std_logic_vector (DATA_WIDTH-1 downto 0); -- First line of the buffer. Must be read constantly by the ip manager
-				
-				data_IPs		: inout data_array; -- There is one data_IP for each IP core 
-				add_in_IPs     	: in add_array;
-				W_enable_IPs  	: in std_logic_vector(NUM_IPS-1 downto 0);	
-				R_enable_IPs  	: in std_logic_vector(NUM_IPS-1 downto 0);				
-				generic_en_IPs	: in std_logic_vector(NUM_IPS-1 downto 0);	
-				enable_IPs		: out std_logic_vector(NUM_IPS-1 downto 0);	
-				ack_IPs			: out std_logic_vector(NUM_IPS-1 downto 0);	
-				interrupt_IPs	: in std_logic_vector(NUM_IPS-1 downto 0)		
+                clk, rst      	: in std_logic;		
+                data_in         : out std_logic_vector (DATA_WIDTH-1 downto 0);
+                data_out        : in std_logic_vector (DATA_WIDTH-1 downto 0);            
+                add             : out std_logic_vector(ADD_WIDTH-1 downto 0);
+                W_enable        : out std_logic;
+                R_enable        : out std_logic;
+                generic_en      : out std_logic;
+                interrupt       : out std_logic;
+            
+                row_0           : in std_logic_vector (DATA_WIDTH-1 downto 0); 
+                
+                data_in_IPs     : in data_array; 
+                data_out_IPs    : out data_array;                                         
+                add_IPs         : in add_array;
+                W_enable_IPs    : in std_logic_vector(NUM_IPS-1 downto 0);    
+                R_enable_IPs    : in std_logic_vector(NUM_IPS-1 downto 0);                
+                generic_en_IPs  : in std_logic_vector(NUM_IPS-1 downto 0);    
+                enable_IPs      : out std_logic_vector(NUM_IPS-1 downto 0);    
+                ack_IPs         : out std_logic_vector(NUM_IPS-1 downto 0);    
+                interrupt_IPs   : in std_logic_vector(NUM_IPS-1 downto 0)    	
 				);
 	end component IP_MANAGER;
 	
@@ -103,14 +105,16 @@ begin
 		port map(	
 				clk 			=>	clk,
 				rst				=>	rst,
-				data			=>	data_man,
-				add_in      	=>	add_in_man,
+				data_in			=>	data_in_man,
+				data_out		=>	data_out_man,				
+				add           	=>	add_man,
 				W_enable		=>	W_enable_man,
 				R_enable		=>	R_enable_man,
 				generic_en		=>	generic_en_man,
 				interrupt		=>  interrupt,
 				row_0			=>	row_0_man,
-				data_IPs		=>	data_IPs,
+				data_in_IPs		=>	data_in_IPs,
+				data_out_IPs	=>	data_out_IPs,				
 				add_in_IPs		=>	add_in_IPs,
 				W_enable_IPs	=>	W_enable_IPs,
 				R_enable_IPs  	=>	R_enable_IPs,			

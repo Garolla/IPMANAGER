@@ -7,19 +7,20 @@ use work.CONSTANTS.all;
 entity DATA_BUFFER is
 	port(	
 
-		clk, rst        : in std_logic;		
-		row_0		: inout std_logic_vector (DATA_WIDTH-1 downto 0); -- First line of the buffer. Must be read constantly by the ip manager
+		--clk              : in std_logic;	 
+		rst              : in std_logic;		
+		row_0		     : out std_logic_vector (DATA_WIDTH-1 downto 0); -- First line of the buffer. Must be read constantly by the ip manager
 		--PORT_0
-		data_cpu	: inout std_logic_vector (DATA_WIDTH-1 downto 0);
-		address_cpu     : in std_logic_vector(ADD_WIDTH-1 downto 0);
-		WE_CPU 		: in std_logic;
-		RE_CPU 		: in std_logic;
-		GE_CPU		: in std_logic;
+		data_cpu	     : inout std_logic_vector (DATA_WIDTH-1 downto 0);
+		address_cpu      : in std_logic_vector(ADD_WIDTH-1 downto 0);
+		WE_CPU 		     : in std_logic;
+		RE_CPU 		     : in std_logic;
+		GE_CPU		      : in std_logic;
 		
 		--PORT_1
 
-		data_ip_in	  	: in std_logic_vector (DATA_WIDTH-1 downto 0);
-		data_ip_out		: out std_logic_vector (DATA_WIDTH-1 downto 0);
+		data_in_ip	  	: in std_logic_vector (DATA_WIDTH-1 downto 0);
+		data_out_ip		: out std_logic_vector (DATA_WIDTH-1 downto 0);
 		address_ip     	: in std_logic_vector(ADD_WIDTH-1 downto 0);
 		WE_IP 			: in std_logic;
 		RE_IP  			: in std_logic;
@@ -38,11 +39,11 @@ architecture BEHAVIOURAL of DATA_BUFFER is
 begin
 
 	-- Memory Write Block
-  MEM_WRITE: process (data_cpu, address_cpu, WE_CPU, GE_CPU, data_ip_in, address_ip, WE_IP, GE_IP ) begin
+  MEM_WRITE: process (data_cpu, address_cpu, WE_CPU, GE_CPU, data_in_ip, address_ip, WE_IP, GE_IP ) begin
     if (GE_CPU = '1' and WE_CPU = '1') then
 		mem(conv_integer(address_cpu)) <= data_cpu;
 	elsif (GE_IP = '1' and WE_IP = '1') then
-		mem(conv_integer(address_ip)) <= data_ip_in;
+		mem(conv_integer(address_ip)) <= data_in_ip;
     end if;
   end process;
 
@@ -58,9 +59,8 @@ begin
       tmp_cpu <= mem(conv_integer(address_cpu));
     end if;
     if (GE_IP = '1' and RE_IP = '1' and WE_IP = '0') then
-
       --tmp_ip <= mem(conv_integer(address_ip));
-	  data_ip_out <= mem(conv_integer(address_ip));
+	  data_out_ip <= mem(conv_integer(address_ip));
     end if;
   end process;
 

@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 package CONSTANTS is
  
-	constant NUM_IPS                : integer := 10;  --- Number of IP cores that must be handled by the ip core manager
+	constant NUM_IPS                : integer := 4;  --- Number of IP cores that must be handled by the ip core manager
 	constant DATA_WIDTH				: integer := 16;
 	constant ADD_WIDTH				: integer := 6;
 	

@@ -18,8 +18,8 @@ ARCHITECTURE behavior OF tb_data_buffer IS
          WE_CPU : IN  std_logic;
          RE_CPU : IN  std_logic;
          GE_CPU : IN  std_logic;
-         data_ip_in : IN  std_logic_vector(15 downto 0);
-		 data_ip_out : OUT  std_logic_vector(15 downto 0);
+         data_in_ip : IN  std_logic_vector(15 downto 0);
+		 data_out_ip : OUT  std_logic_vector(15 downto 0);
          address_ip : IN  std_logic_vector(5 downto 0);
          WE_IP : IN  std_logic;
          RE_IP : IN  std_logic;
@@ -39,7 +39,7 @@ ARCHITECTURE behavior OF tb_data_buffer IS
    signal WE_IP : std_logic;
    signal RE_IP : std_logic;
    signal GE_IP : std_logic;
-   signal data_ip_in: std_logic_vector(15 downto 0);
+   signal data_in_ip: std_logic_vector(15 downto 0);
    
 	--BiDirs
    signal data_cpu, data_tx_cpu, data_rx_cpu : std_logic_vector(15 downto 0);
@@ -47,7 +47,7 @@ ARCHITECTURE behavior OF tb_data_buffer IS
 
  	--Outputs
    signal ROW_0 : std_logic_vector(15 downto 0);
-   signal data_ip_out: std_logic_vector(15 downto 0);
+   signal data_out_ip: std_logic_vector(15 downto 0);
    
    -- Clock period definitions
    constant clk_period : time := 10 ns;
@@ -64,8 +64,8 @@ BEGIN
           WE_CPU => WE_CPU,
           RE_CPU => RE_CPU,
           GE_CPU => GE_CPU,
-          data_ip_in => data_ip_in,
-		  data_ip_out => data_ip_out,
+          data_in_ip => data_in_ip,
+		  data_out_ip => data_out_ip,
           address_ip => address_ip,
           WE_IP => WE_IP,
           RE_IP => RE_IP,
@@ -133,7 +133,7 @@ BEGIN
 		WE_CPU <= '1';
 		RE_CPU <= '0';
 		--data_tx_ip <= "1111111100000000";
-		data_ip_in <= "1111111100000000";
+		data_in_ip <= "1111111100000000";
 		address_ip <= "001111";
 		GE_IP <= '1';
 		WE_IP <= '1';
