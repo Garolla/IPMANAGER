@@ -42,7 +42,7 @@ begin
   MEM_WRITE: process (data_cpu, address_cpu, WE_CPU, GE_CPU, data_in_ip, address_ip, WE_IP, GE_IP ) begin
     if (GE_CPU = '1' and WE_CPU = '1') then
 		mem(conv_integer(address_cpu)) <= data_cpu;
-	elsif (GE_IP = '1' and WE_IP = '1') then
+	elsif (GE_IP = '1' and WE_IP = '1') then 
 		mem(conv_integer(address_ip)) <= data_in_ip;
     end if;
   end process;
@@ -55,6 +55,7 @@ begin
 	row_0 <=  mem(0);
 	
   MEM_READ: process (address_cpu, GE_CPU, RE_CPU, WE_CPU, address_ip, GE_IP, RE_IP, WE_IP, mem) begin
+    -- In case of simultaneus write and read, write has priority 
     if (GE_CPU = '1' and RE_CPU = '1' and WE_CPU = '0') then
       tmp_cpu <= mem(conv_integer(address_cpu));
     end if;
