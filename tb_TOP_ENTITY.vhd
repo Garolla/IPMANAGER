@@ -117,12 +117,20 @@ begin
 		wait for clk_period;		
 		W_enable		<= '0';
 		R_enable		<= '0';
-		generic_enable	<= '0';	
+		generic_enable	<= '0';
 		wait for clk_period;		
 		W_enable		<= '0';
 		R_enable		<= '0';
-		generic_enable	<= '0';		
-		wait for clk_period;	
+		generic_enable	<= '0';				
+		wait for clk_period;		
+--		W_enable		<= '0';
+--		R_enable		<= '0';
+--		generic_enable	<= '0';		
+--		wait for clk_period;
+--		W_enable		<= '0';
+--		R_enable		<= '0';
+--		generic_enable	<= '0';		
+--		wait for clk_period;	
 		--Closing Transaction	
 		address			<= conv_std_logic_vector(0, ADD_WIDTH);
 		data_tx			<= "0000" & conv_std_logic_vector(2, IPADD_POS+1); -- 12 bits are used for the IP number  	

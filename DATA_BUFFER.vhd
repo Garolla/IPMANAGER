@@ -58,7 +58,7 @@ begin
 	-- In case of simultaneus write and read, write has priority 
 	-- Simultaneous read from both CPU and IP is possible
 	tmp_cpu <= mem(conv_integer(address_cpu));
-	data_out_ip <= mem(conv_integer(address_ip)) when (GE_IP = '1' and RE_IP = '1' and WE_IP = '0') else (others => '1');
+	data_out_ip <= mem(conv_integer(address_ip)) when (GE_IP = '1' and RE_IP = '1' and WE_IP = '0');
 	
 	
 --  MEM_READ: process (address_cpu, GE_CPU, RE_CPU, WE_CPU, address_ip, GE_IP, RE_IP, WE_IP, mem) begin
