@@ -39,7 +39,7 @@ signal data_out_cpu : std_logic_vector(DATA_WIDTH - 1 downto 0);
 begin
 
 --Write Process
- process(rst, Chosen_cpu, Write_enable_cpu, Chosen_ip, Write_enable_ip)	
+ process(rst, Chosen_cpu,data_cpu, data_ip_in, Write_enable_cpu, Chosen_ip, Write_enable_ip)	
  begin
  
   

@@ -37,7 +37,7 @@ signal storage   : std_logic_vector(DATA_WIDTH - 1 downto 0);
 begin
 	
 	
-write_proc:	process(rst, Chosen_cpu, Write_enable_cpu, Chosen_ip, Write_enable_ip)
+write_proc:	process(rst, I_cpu, I_ip_in, Chosen_cpu, Write_enable_cpu, Chosen_ip, Write_enable_ip)
 				begin 
 						
 						if (rst = '1') then

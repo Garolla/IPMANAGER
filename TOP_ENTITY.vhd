@@ -81,17 +81,56 @@ begin
 	-- IMPORTANT: Instantiate here the IP cores. 
 	-- The port map is the same for every IP, only the numbers must be changed. 
 	-- All zeros for IP_0 ( Highest interrupt priority), all ones for IP_1 and so on. IP_N has the lowest priority
-	 ip_0: entity work.IP_ADDER	
+	
+	 ip_0: entity work.IP_DUMMY	
 		port map(	clk				=> clock, 
 					rst				=> reset, 
 					data_in			=> data_in_IPs(0),
 					data_out		=> data_out_IPs(0),
 					address			=> add_IPs(0),
 					W_enable		=> W_enable_IPs(0),
-					R_enable		=> R_enable(0),
-					generic_enable	=> generic_en_IPs(0),
+					R_enable		=> R_enable_IPs(0),
+					generic_en		=> generic_en_IPs(0),
 					enable			=> enable_IPs(0),
 					ack				=> ack_IPs(0),
-					interrupt		=> interrupt_IPs(0));			
+					interrupt		=> interrupt_IPs(0));		
+						
+	 ip_1: entity work.IP_ADDER	
+		port map(	clk				=> clock, 
+					rst				=> reset, 
+					data_in			=> data_in_IPs(1),
+					data_out		=> data_out_IPs(1),
+					address			=> add_IPs(1),
+					W_enable		=> W_enable_IPs(1),
+					R_enable		=> R_enable_IPs(1),
+					generic_en		=> generic_en_IPs(1),
+					enable			=> enable_IPs(1),
+					ack				=> ack_IPs(1),
+					interrupt		=> interrupt_IPs(1));	
 					
+	 ip_2: entity work.IP_DUMMY	
+		port map(	clk				=> clock, 
+					rst				=> reset, 
+					data_in			=> data_in_IPs(2),
+					data_out		=> data_out_IPs(2),
+					address			=> add_IPs(2),
+					W_enable		=> W_enable_IPs(2),
+					R_enable		=> R_enable_IPs(2),
+					generic_en		=> generic_en_IPs(2),
+					enable			=> enable_IPs(2),
+					ack				=> ack_IPs(2),
+					interrupt		=> interrupt_IPs(2));	
+										
+	 ip_3: entity work.IP_DUMMY	
+		port map(	clk				=> clock, 
+					rst				=> reset, 
+					data_in			=> data_in_IPs(3),
+					data_out		=> data_out_IPs(3),
+					address			=> add_IPs(3),
+					W_enable		=> W_enable_IPs(3),
+					R_enable		=> R_enable_IPs(3),
+					generic_en		=> generic_en_IPs(3),
+					enable			=> enable_IPs(3),
+					ack				=> ack_IPs(3),
+					interrupt		=> interrupt_IPs(3));											
 end architecture;
