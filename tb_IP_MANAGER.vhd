@@ -6,7 +6,7 @@ use work.CONSTANTS.all;
 ENTITY TB_IP_MANAGER is
 END TB_IP_MANAGER;
 
-architecture beh of TB_IP_MANAGER is
+architecture TEST of TB_IP_MANAGER is
 
 	component IP_MANAGER 
 		port(	

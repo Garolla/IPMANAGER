@@ -1,133 +1,97 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
 use work.CONSTANTS.all;
 
+--IMPORTANT: The number of IPs must be written in the file CONSTANTS.vhd. The IPs core must be then connected at the end of this file
 entity TOP_ENTITY is
 	port(	
-			clk, rst        : in std_logic;		
+			clock			: in std_logic;	
+			reset			: in std_logic;		
 			data			: inout std_logic_vector (DATA_WIDTH-1 downto 0);
-			add_in	        : in std_logic_vector(ADD_WIDTH-1 downto 0);
+			address	        : in std_logic_vector(ADD_WIDTH-1 downto 0);
 			W_enable  		: in std_logic;
 			R_enable  		: in std_logic;
-			generic_en		: in std_logic;
-			interrupt		: out std_logic;
-			
-            data_in_IPs     : in data_array; 
-            data_out_IPs    : out data_array;     
-            add_IPs         : in add_array;            
-            W_enable_IPs    : in std_logic_vector(0 to NUM_IPS-1);    
-            R_enable_IPs    : in std_logic_vector(0 to NUM_IPS-1);                
-            generic_en_IPs  : in std_logic_vector(0 to NUM_IPS-1);    
-            enable_IPs      : out std_logic_vector(0 to NUM_IPS-1);    
-            ack_IPs         : out std_logic_vector(0 to NUM_IPS-1);    
-            interrupt_IPs   : in std_logic_vector(0 to NUM_IPS-1)     
+			generic_enable	: in std_logic;
+			interrupt		: out std_logic
 			);
 end entity TOP_ENTITY;
 
 architecture STRUCTURAL of TOP_ENTITY is
 
-	component DATA_BUFFER is
-		port(	
-                --clk              : in std_logic;	 
-                rst              : in std_logic;        
-                row_0             : out std_logic_vector (DATA_WIDTH-1 downto 0); -- First line of the buffer. Must be read constantly by the ip manager
-                --PORT_0
-                data_cpu         : inout std_logic_vector (DATA_WIDTH-1 downto 0);
-                address_cpu      : in std_logic_vector(ADD_WIDTH-1 downto 0);
-                WE_CPU              : in std_logic;
-                RE_CPU              : in std_logic;
-                GE_CPU              : in std_logic;
-                
-                --PORT_1
-        
-                data_in_ip          : in std_logic_vector (DATA_WIDTH-1 downto 0);
-                data_out_ip        : out std_logic_vector (DATA_WIDTH-1 downto 0);
-                address_ip         : in std_logic_vector(ADD_WIDTH-1 downto 0);
-                WE_IP             : in std_logic;
-                RE_IP              : in std_logic;
-                GE_IP            : in std_logic
-				);
-	end component DATA_BUFFER;
-
-	component IP_MANAGER is
-		port(	
-                clk, rst      	: in std_logic;		
-                data_in         : out std_logic_vector (DATA_WIDTH-1 downto 0);
-                data_out        : in std_logic_vector (DATA_WIDTH-1 downto 0);            
-                add             : out std_logic_vector(ADD_WIDTH-1 downto 0);
-                W_enable        : out std_logic;
-                R_enable        : out std_logic;
-                generic_en      : out std_logic;
-                interrupt       : out std_logic;
-            
-                row_0           : in std_logic_vector (DATA_WIDTH-1 downto 0); 
-                
-                data_in_IPs     : in data_array; 
-                data_out_IPs    : out data_array;                                         
-                add_IPs         : in add_array;
-                W_enable_IPs    : in std_logic_vector(0 to NUM_IPS-1);    
-                R_enable_IPs    : in std_logic_vector(0 to NUM_IPS-1);                
-                generic_en_IPs  : in std_logic_vector(0 to NUM_IPS-1);    
-                enable_IPs      : out std_logic_vector(0 to NUM_IPS-1);    
-                ack_IPs         : out std_logic_vector(0 to NUM_IPS-1);    
-                interrupt_IPs   : in std_logic_vector(0 to NUM_IPS-1)     	
-				);
-	end component IP_MANAGER;
-	
 	--Signals between the buffer and the ip manager
-	signal		row_0_man		  	:  std_logic_vector (DATA_WIDTH-1 downto 0); 
-	signal		data_in_man		  	:  std_logic_vector (DATA_WIDTH-1 downto 0);
-	signal		data_out_man		:  std_logic_vector (DATA_WIDTH-1 downto 0);	
-	signal		add_man     		:  std_logic_vector (ADD_WIDTH-1 downto 0);
-	signal		W_enable_man		:  std_logic;
-	signal		R_enable_man		:  std_logic;
-	signal		generic_en_man		:  std_logic;
+	signal	row_0			  	: std_logic_vector (DATA_WIDTH-1 downto 0); 
+	signal	data_in_ip		  	: std_logic_vector (DATA_WIDTH-1 downto 0);
+	signal	data_out_ip			: std_logic_vector (DATA_WIDTH-1 downto 0);	
+	signal	address_ip     		: std_logic_vector (ADD_WIDTH-1 downto 0);
+	signal	WE_IP				: std_logic;
+	signal	RE_IP				: std_logic;
+	signal	GE_IP				: std_logic;
+	--Signals between the IP manager and the various IP cores
+	signal	data_in_IPs     	: data_array; 
+	signal	data_out_IPs    	: data_array;     
+	signal	add_IPs         	: add_array;            
+	signal	W_enable_IPs    	: std_logic_vector(0 to NUM_IPS-1);    
+	signal	R_enable_IPs    	: std_logic_vector(0 to NUM_IPS-1);                
+	signal	generic_en_IPs  	: std_logic_vector(0 to NUM_IPS-1);    
+	signal	enable_IPs      	: std_logic_vector(0 to NUM_IPS-1);    
+	signal	ack_IPs         	: std_logic_vector(0 to NUM_IPS-1);    
+	signal	interrupt_IPs   	: std_logic_vector(0 to NUM_IPS-1);    
 	
 begin
 
-	data_buff: DATA_BUFFER
-		port map(	
-				--clk 			=>	clk,
-				rst				=>	rst,
-				row_0			=>	row_0_man,
-				--PORT_0
-				data_cpu		=>	data,
-				address_cpu		=>	add_in,
-				WE_CPU	 		=>	W_enable,
-				RE_CPU	 		=>	R_enable,
-				GE_CPU			=>	generic_en,
-				--PORT_1
-				data_in_ip		=>	data_in_man,
-				data_out_ip		=>	data_out_man,
-				address_ip      =>	add_man,
-				WE_IP			=>	W_enable_man,
-				RE_IP			=>	R_enable_man,
-				GE_IP			=>	generic_en_man
+	-- IMPORTANT: Change BEHAVIOURAL to STRUCTURAL and viceversa to test the different architecture
+	data_buff: entity work.DATA_BUFFER(BEHAVIOURAL)
+		port map(	rst				=>	reset,
+					row_0			=>	row_0,
+					--PORT_0
+					data_cpu		=>	data,
+					address_cpu		=>	address,
+					WE_CPU	 		=>	W_enable,
+					RE_CPU	 		=>	R_enable,
+					GE_CPU			=>	generic_enable,
+					--PORT_1
+					data_in_ip		=>	data_in_ip,
+					data_out_ip		=>	data_out_ip,
+					address_ip      =>	address_ip,
+					WE_IP			=>	WE_IP,
+					RE_IP			=>	RE_IP,
+					GE_IP			=>	GE_IP);
 				
-				);
-				
-	ip_man: IP_MANAGER 
-		port map(	
-				clk 			=>	clk,
-				rst				=>	rst,
-				data_in			=>	data_in_man,
-				data_out		=>	data_out_man,				
-				add           	=>	add_man,
-				W_enable		=>	W_enable_man,
-				R_enable		=>	R_enable_man,
-				generic_en		=>	generic_en_man,
-				interrupt		=>  interrupt,
-				row_0			=>	row_0_man,
-				data_in_IPs		=>	data_in_IPs,
-				data_out_IPs	=>	data_out_IPs,				
-				add_IPs		    =>	add_IPs,
-				W_enable_IPs	=>	W_enable_IPs,
-				R_enable_IPs  	=>	R_enable_IPs,			
-				generic_en_IPs	=>	generic_en_IPs,
-				enable_IPs		=>	enable_IPs,
-				ack_IPs			=>	ack_IPs,
-				interrupt_IPs	=>	interrupt_IPs
-				);
-
+	ip_man: entity work.IP_MANAGER 
+		port map(	clk 			=>	clock,
+					rst				=>	reset,
+					data_in			=>	data_in_ip,
+					data_out		=>	data_out_ip,				
+					add           	=>	address_ip,
+					W_enable		=>	WE_IP,
+					R_enable		=>	RE_IP,
+					generic_en		=>	GE_IP,
+					interrupt		=>  interrupt,
+					row_0			=>	row_0,
+					data_in_IPs		=>	data_in_IPs,
+					data_out_IPs	=>	data_out_IPs,				
+					add_IPs		    =>	add_IPs,
+					W_enable_IPs	=>	W_enable_IPs,
+					R_enable_IPs  	=>	R_enable_IPs,			
+					generic_en_IPs	=>	generic_en_IPs,
+					enable_IPs		=>	enable_IPs,
+					ack_IPs			=>	ack_IPs,
+					interrupt_IPs	=>	interrupt_IPs);
+	
+	-- IMPORTANT: Instantiate here the IP cores. 
+	-- The port map is the same for every IP, only the numbers must be changed. 
+	-- All zeros for IP_0 ( Highest interrupt priority), all ones for IP_1 and so on. IP_N has the lowest priority
+	 ip_0: entity work.IP_ADDER	
+		port map(	clk				=> clock, 
+					rst				=> reset, 
+					data_in			=> data_in_IPs(0),
+					data_out		=> data_out_IPs(0),
+					address			=> add_IPs(0),
+					W_enable		=> W_enable_IPs(0),
+					R_enable		=> R_enable(0),
+					generic_enable	=> generic_en_IPs(0),
+					enable			=> enable_IPs(0),
+					ack				=> ack_IPs(0),
+					interrupt		=> interrupt_IPs(0));			
+					
 end architecture;

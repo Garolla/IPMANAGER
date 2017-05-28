@@ -1,41 +1,15 @@
-
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 
 library work;
 use work.CONSTANTS.ALL; 
  
-ENTITY tb_data_buffer IS
-END tb_data_buffer;
+ENTITY TB_DATA_BUFFER IS
+END TB_DATA_BUFFER;
  
-ARCHITECTURE behavior OF tb_data_buffer IS 
- 
-    -- Component Declaration for the Unit Under Test (UUT)
- 
-    COMPONENT data_buffer
-    port(
-	    
-		 rst			 	 : IN    std_logic;
-		 ROW_0      	 : OUT   std_logic_vector(DATA_WIDTH - 1 downto 0);
-       
-		 --PORT_0
-		 data_cpu    	 : INOUT std_logic_vector(DATA_WIDTH - 1 downto 0);
-	    address_cpu 	 : IN    std_logic_vector(ADD_WIDTH - 1 downto 0);
-		 WE_CPU         : IN 	std_logic;
-		 RE_CPU         : IN 	std_logic;
-		 GE_CPU         : IN 	std_logic;
-		 
-		 --PORT_1
-		 data_in_ip     : IN  std_logic_vector(DATA_WIDTH - 1 downto 0);
-		 data_out_ip	 : OUT std_logic_vector(DATA_WIDTH - 1 downto 0);
-       address_ip  	 : IN  std_logic_vector(ADD_WIDTH - 1 downto 0);
-		 WE_IP       	 : IN 	std_logic;
-		 RE_IP       	 : IN 	std_logic;
-		 GE_IP       	 : IN 	std_logic
-	);
-    END COMPONENT;
-    
+ARCHITECTURE TEST OF TB_DATA_BUFFER IS 
 
+    
    --Inputs
    signal rst : std_logic;
    signal address_cpu : std_logic_vector(ADD_WIDTH - 1 downto 0);
@@ -61,7 +35,7 @@ ARCHITECTURE behavior OF tb_data_buffer IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: data_buffer PORT MAP (
+   uut1: entity work.data_buffer(BEHAVIOURAL) PORT MAP (
           rst => rst,
           ROW_0 => ROW_0,
           data_cpu => data_cpu,
@@ -70,13 +44,27 @@ BEGIN
           RE_CPU => RE_CPU,
           GE_CPU => GE_CPU,
           data_in_ip => data_in_ip,
-			 data_out_ip => data_out_ip,
+		  data_out_ip => data_out_ip,
           address_ip => address_ip,
           WE_IP => WE_IP,
           RE_IP => RE_IP,
           GE_IP => GE_IP
         );
-
+   uut2: entity work.data_buffer(STRUCTURAL) PORT MAP (
+               rst => rst,
+               ROW_0 => ROW_0,
+               data_cpu => data_cpu,
+               address_cpu => address_cpu,
+               WE_CPU => WE_CPU,
+               RE_CPU => RE_CPU,
+               GE_CPU => GE_CPU,
+               data_in_ip => data_in_ip,
+		  data_out_ip => data_out_ip,
+               address_ip => address_ip,
+               WE_IP => WE_IP,
+               RE_IP => RE_IP,
+               GE_IP => GE_IP
+             );
 -- DATA CPU Tx and Rx
 	data_cpu 	<= data_tx_cpu when (WE_CPU = '1' and GE_CPU = '1' and RE_CPU = '0') else (others => 'Z');
 	data_rx_cpu <= data_cpu when (WE_CPU = '0' and RE_CPU = '1' and GE_CPU = '1');
@@ -193,4 +181,4 @@ BEGIN
       wait;
    end process;
 
-END;
+END ARCHITECTURE;
