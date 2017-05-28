@@ -3,10 +3,10 @@ USE ieee.std_logic_1164.ALL;
 use ieee.std_logic_arith.all;
 use work.CONSTANTS.all;
 
-ENTITY TB_IPM is
-END TB_IPM;
+ENTITY TB_IP_MANAGER is
+END TB_IP_MANAGER;
 
-architecture beh of TB_IPM is
+architecture beh of TB_IP_MANAGER is
 
 	component IP_MANAGER 
 		port(	

@@ -5,9 +5,22 @@
 vlib work
 
 vcom -work work CONSTANTS.vhd
+
+vcom -work work EN_DECODER3TO8.vhd
+vcom -work work DECODER6TO64.vhd
+vcom -work work REG_0.vhd
+vcom -work work REG_16b.vhd
+vcom -work work REGS_FIRST8_PORT_MAP.vhd
+vcom -work work REGS8_PORT_MAP.vhd
 vcom -work work DATA_BUFFER.vhd
+vcom -work work IP_ADDER.vhd
 vcom -work work IP_MANAGER.vhd
 vcom -work work TOP_ENTITY.vhd
+
+vcom -work work tb_DATA_BUFFER.vhd
+vcom -work work tb_IP_ADDER.vhd
+vcom -work work tb_IP_MANAGER.vhd
+vcom -work work tb_TOP_ENTITY.vhd
 
 # if [ "$(ps | grep vsim)" = "" ]
 # then
