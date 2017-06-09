@@ -3,13 +3,30 @@
 \section{IP Manager interfaces}
 %\lhead{Disclaimer, this was done by project 13'members Authors: Floridia, Margelli, Mocerino, Ngongang}
 A multi IP-core system requires a IP core manager to handle the complexity of this system.
-Main tasks of the IP Manager are the correct exchange of data between the target IP and the CPU. Another critical task is the interrupt handling. Figure \ref{00fig} shows the overall architecture of the whole system adopted. 
+Main tasks of the IP Manager are the correct exchange of data between the target IP and the CPU. Another critical task is the interrupt handling. Figure \ref{00fig} shows the overall architecture of the whole system adopted.\\
+	
+	As shown in the figure, the IP manager indirectly communicates with the CPU through a dual port data buffer. This buffer has a standard interface and it is used to redirect data to/from the IP core selected.
+	Whenever the CPU wants to start a transaction, it has to write some control bits (explained in section \ref{transaction}) at address 0 ($ row0 $) of the data buffer.
+	The data in this address is always read from the IP Manager to speed-up the routing process whenever a new transaction begins.\\
+	
+	As for a generic $ x $ IP core interface, we have the following signals:
+	\begin{itemize}
+	\item \textit{data\_in\_IPs(x)}:data from the $ x $ IP-core to the CPU/Data buffer.
+\item \textit{data\_out\_IPs(x)}:data to the $ x $ IP-core from the CPU/Data buffer.
+\item \textit{add\_IPs(x)}:address from the $ x $ IP-core to the Data buffer.
+\item \textit{W\_enable\_IPs(x)}: when the $ x $ IP-core wants to write to the buffer
+\item \textit{R\_enable\_IPs(x)}: when the $ x $ IP-core wants to read from the buffer
+\item \textit{Generic\_en\_IPs(x)}: when the $ x $ IP-core wants to communicate with the buffer	
+\item \textit{enable\_IPs(x)}: when the CPU wants to communicate with the $ x $ IP-core
+\item \textit{ack\_IPs(x)}: the IP-core manager sent this signal to the $ x $ IP-core to tell it that its interrupt request will be served
+\item \textit{interrupt\_IPs(x)}: when the $ x $ IP-core raises an interrupt request
+\end{itemize}
 	\begin{figure}[h]
 		\centering
-		\includegraphics[width=\textwidth]{chapters/figures/interface.pdf}  
+		\includegraphics[width=0.9\textwidth]{chapters/figures/interface.pdf}  
 		\caption{System architecture}
 		\label{00fig}
 	\end{figure}
-	
-	As shown in the figure, the IP manager has a standard interface with the buffer. This interface is used to redirect data to/from the target IP and to access the buffer itself (e.g. to write the row 0).\\ However, it is
-	provided with a direct access (read-only) to the internal element to speed-up the routing process whenever a new transaction begins. It is important to underline that for each instantiated IP there are a set ofstandard signals and some protocol-specific signals. The former are the very same signals used for accessing the buffer, whilst the latter are used for handling interrupt requests. For sake of clarity, we report the function of the IP-specific signals for the generic IP x:
+\clearpage
+\newpage
+\section{CPU Transaction } \label{transaction}

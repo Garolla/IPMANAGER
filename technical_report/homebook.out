@@ -2,7 +2,8 @@
 \BOOKMARK [1][]{section.1.1}{Multi IP-core systems and the IP-core Manager}{chapter.1}% 2
 \BOOKMARK [0][]{chapter.2}{System's architecture}{}% 3
 \BOOKMARK [1][]{section.2.1}{IP Manager interfaces}{chapter.2}% 4
-\BOOKMARK [0][]{chapter.3}{IP-core Manager functionalities}{}% 5
-\BOOKMARK [1][]{section.3.1}{Enabling the right IP}{chapter.3}% 6
-\BOOKMARK [1][]{section.3.2}{Connecting the signals}{chapter.3}% 7
-\BOOKMARK [1][]{section.3.3}{Interrupt Handler}{chapter.3}% 8
+\BOOKMARK [1][]{section.2.2}{CPU Transaction }{chapter.2}% 5
+\BOOKMARK [0][]{chapter.3}{IP-core Manager functionalities}{}% 6
+\BOOKMARK [1][]{section.3.1}{Enabling the right IP}{chapter.3}% 7
+\BOOKMARK [1][]{section.3.2}{Connecting the signals}{chapter.3}% 8
+\BOOKMARK [1][]{section.3.3}{Interrupt Handler}{chapter.3}% 9
