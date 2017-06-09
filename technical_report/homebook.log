@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.9)  9 JUN 2017 17:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.9)  9 JUN 2017 19:44
 entering extended mode
 **./homebook.tex
 (homebook.tex
@@ -507,8 +507,20 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip64
 )
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 105.
-Package hyperref Info: Option `colorlinks' set `true' on input line 105.
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 142.
+)
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 106.
+Package hyperref Info: Option `colorlinks' set `true' on input line 106.
+
+(C:\Users\Gina\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
 \@indexfile=\write4
 \openout4 = `homebook.idx'.
 
@@ -518,29 +530,26 @@ Writing index file homebook.idx
 LaTeX Warning: Unused global option(s):
     [makeidx].
 
-(homebook.aux
-
-LaTeX Warning: Label `chap1' multiply defined.
-
-)
+(homebook.aux)
 \openout1 = `homebook.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 128.
-LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
 \c@lstlisting=\count164
- (C:\Users\Gina\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+
+(C:\Users\Gina\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count165
 \scratchdimen=\dimen166
@@ -559,17 +568,8 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box37
- ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
-Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
-)
-Package color Info: Driver file: pdftex.def on input line 142.
-)
-Package hyperref Info: Link coloring ON on input line 128.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package hyperref Info: Link coloring ON on input line 146.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
@@ -577,19 +577,19 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count171
 )
-LaTeX Info: Redefining \ref on input line 128.
-LaTeX Info: Redefining \pageref on input line 128.
-LaTeX Info: Redefining \nameref on input line 128.
+LaTeX Info: Redefining \ref on input line 146.
+LaTeX Info: Redefining \pageref on input line 146.
+LaTeX Info: Redefining \nameref on input line 146.
 
 (homebook.out) (homebook.out)
 \@outlinefile=\write5
 \openout5 = `homebook.out'.
 
- <./logopoli.jpg, id=39, 573.8238pt x 565.1514pt>
+ <./logopoli.jpg, id=55, 573.8238pt x 565.1514pt>
 File: ./logopoli.jpg Graphic file (type jpg)
 
 <use ./logopoli.jpg>
-Package pdftex.def Info: ./logopoli.jpg used on input line 134.
+Package pdftex.def Info: ./logopoli.jpg used on input line 152.
 (pdftex.def)             Requested size: 85.35826pt x 84.06192pt.
  [1
 
@@ -603,18 +603,18 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 198.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 216.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 198.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 216.
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.198 \tableofcontents
+l.216 \tableofcontents
                        [1] (homebook.toc
 LaTeX Font Info:    Try loading font information for U+msa on input line 3.
 
@@ -632,11 +632,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 200.
+less on input line 218.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 200.
+less on input line 218.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -669,22 +669,22 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 Chapter 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--7
+Underfull \hbox (badness 10000) in paragraph at lines 12--14
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8--11
+Underfull \hbox (badness 10000) in paragraph at lines 15--18
 
  []
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 23.
+less on input line 18.
 
 
 Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 23.
+less on input line 18.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -694,12 +694,15 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [2
 
-] <chapters/figures/interface.pdf, id=83, 1341.01pt x 1488.56125pt>
+] <chapters/figures/interface.pdf, id=108, 1341.01pt x 1488.56125pt>
 File: chapters/figures/interface.pdf Graphic file (type pdf)
 
 <use chapters/figures/interface.pdf>
-Package pdftex.def Info: chapters/figures/interface.pdf used on input line 26.
-(pdftex.def)             Requested size: 396.91324pt x 440.57544pt.
+Package pdftex.def Info: chapters/figures/interface.pdf used on input line 45.
+(pdftex.def)             Requested size: 418.96547pt x 465.06068pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -707,37 +710,19 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[3 <./chapters/figures/interface.pdf>]) (chapters/c2.tex
+[3]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4
-
-]
-Chapter 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--7
+[4 <./chapters/figures/interface.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
-<imm/ip_func/enable_ip.png, id=97, 520.97934pt x 607.54451pt>
-File: imm/ip_func/enable_ip.png Graphic file (type png)
-
-<use imm/ip_func/enable_ip.png>
-Package pdftex.def Info: imm/ip_func/enable_ip.png used on input line 29.
-(pdftex.def)             Requested size: 308.71104pt x 360.00557pt.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 32.
-
-
-Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less on input line 32.
-
+) (chapters/c2.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -747,25 +732,55 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [5
 
 ]
+Chapter 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--7
+
+ []
+
+<imm/ip_func/enable_ip.png, id=127, 520.97934pt x 607.54451pt>
+File: imm/ip_func/enable_ip.png Graphic file (type png)
+
+<use imm/ip_func/enable_ip.png>
+Package pdftex.def Info: imm/ip_func/enable_ip.png used on input line 30.
+(pdftex.def)             Requested size: 308.71104pt x 360.00557pt.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less on input line 36.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less on input line 36.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6 <./imm/ip_func/enable_ip.png>]
-<imm/ip_func/x_switch22.png, id=109, 588.48428pt x 416.9423pt>
+[6
+
+]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7 <./imm/ip_func/enable_ip.png>]
+<imm/ip_func/x_switch22.png, id=151, 588.48428pt x 416.9423pt>
 File: imm/ip_func/x_switch22.png Graphic file (type png)
 
 <use imm/ip_func/x_switch22.png>
-Package pdftex.def Info: imm/ip_func/x_switch22.png used on input line 49.
+Package pdftex.def Info: imm/ip_func/x_switch22.png used on input line 62.
 (pdftex.def)             Requested size: 374.86774pt x 265.5952pt.
 
-<imm/ip_func/x_switch33.png, id=110, 588.48428pt x 425.67824pt>
+<imm/ip_func/x_switch33.png, id=152, 588.48428pt x 425.67824pt>
 File: imm/ip_func/x_switch33.png Graphic file (type png)
 
 <use imm/ip_func/x_switch33.png>
-Package pdftex.def Info: imm/ip_func/x_switch33.png used on input line 57.
+Package pdftex.def Info: imm/ip_func/x_switch33.png used on input line 70.
 (pdftex.def)             Requested size: 374.86774pt x 271.16005pt.
 
 
@@ -777,7 +792,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[7
+[8
 
  <./imm/ip_func/x_switch22.png>]
 
@@ -786,23 +801,23 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8 <./imm/ip_func/x_switch33.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 64--68
+[9 <./imm/ip_func/x_switch33.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 77--81
 
  []
 
-<imm/ip_func/interrupt.png, id=123, 545.69087pt x 548.83304pt>
+<imm/ip_func/interrupt.png, id=165, 545.69087pt x 548.83304pt>
 File: imm/ip_func/interrupt.png Graphic file (type png)
 
 <use imm/ip_func/interrupt.png>
-Package pdftex.def Info: imm/ip_func/interrupt.png used on input line 71.
+Package pdftex.def Info: imm/ip_func/interrupt.png used on input line 84.
 (pdftex.def)             Requested size: 374.86774pt x 377.0203pt.
 
-<imm/ip_func/int_vector.png, id=124, 536.30362pt x 197.23688pt>
+<imm/ip_func/int_vector.png, id=166, 536.30362pt x 197.23688pt>
 File: imm/ip_func/int_vector.png Graphic file (type png)
 
 <use imm/ip_func/int_vector.png>
-Package pdftex.def Info: imm/ip_func/int_vector.png used on input line 80.
+Package pdftex.def Info: imm/ip_func/int_vector.png used on input line 93.
 (pdftex.def)             Requested size: 374.86774pt x 137.86923pt.
 
 
@@ -811,10 +826,27 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9
+[10
 
- <./imm/ip_func/interrupt.png>])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 222.
+ <./imm/ip_func/interrupt.png>]) (chapters/c4.tex
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11 <./imm/ip_func/int_vector.png>]
+Chapter 4.
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 241.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less on input line 241.
+
+
+Package Fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
+less on input line 241.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -822,38 +854,38 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10 <./imm/ip_func/int_vector.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 222.
+[12
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 241.
  (homebook.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 222.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 222.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 241.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 241.
 Package rerunfilecheck Info: File `homebook.out' has not changed.
-(rerunfilecheck)             Checksum: 2345C311866728ECEBB0955173920881;587.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
+(rerunfilecheck)             Checksum: A676B4C386EF351298A5891653A9E198;833.
  ) 
 Here is how much of TeX's memory you used:
- 11518 strings out of 493634
- 171308 string characters out of 3143748
- 293770 words of memory out of 3000000
- 14683 multiletter control sequences out of 15000+200000
- 11666 words of font info for 43 fonts, out of 3000000 for 9000
+ 11716 strings out of 493634
+ 173757 string characters out of 3143748
+ 332285 words of memory out of 3000000
+ 14854 multiletter control sequences out of 15000+200000
+ 12441 words of font info for 46 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 38i,15n,77p,1014b,405s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,15n,77p,1014b,1114s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmss17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on homebook.pdf (13 pages, 677875 bytes).
+public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mss17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Pro
+gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on homebook.pdf (15 pages, 713601 bytes).
 PDF statistics:
- 179 PDF objects out of 1000 (max. 8388607)
- 29 named destinations out of 1000 (max. 500000)
- 108 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 236 PDF objects out of 1000 (max. 8388607)
+ 48 named destinations out of 1000 (max. 500000)
+ 140 words of extra memory for PDF output out of 10000 (max. 10000000)
 

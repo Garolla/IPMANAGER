@@ -22,8 +22,9 @@ We implicitly implemented a "kind" of $ bynary $ to \textit{one hot encoding} co
 At $ row_0 $ we read the physical address, and we raise the right enable signal, keeping the other ones at \textit{'0'}.\\
 Figure \ref{fig:en_IP} shows this functionality.\\
 \bigskip
-A small adjustment has been done, since the physical address \textit{0} is reserved to the IP manager, whilst the  \textit{IP core 0 } has as physical address \textit{1}.
-
+A small adjustment has been done, since the physical address \textit{0} is reserved to the IP manager, whilst the  \textit{IP core 0 } has as physical address \textit{1}.\\
+\bigskip
+This component is active during the rising edge of the clock and when the CPU wants to start a transaction.
 \begin{figure}[h!]
 	\centering	
 	\includegraphics[width=0.7\textwidth]{imm/ip_func/enable_ip.png}  
@@ -31,7 +32,19 @@ A small adjustment has been done, since the physical address \textit{0} is reser
 	\label{fig:en_IP}
 \end{figure}
 \bigskip
-This component is active during the rising edge of the clock and when the CPU wants to start a transaction.
+This is the VHDL code that perform this task
+\begin{lstlisting}
+-- Begin ( or continue ) transaction:
+if row_0(BE_POS) = '1' then											
+enable_IPs(conv_integer(row_0(IPADD_POS downto 0))-1) <= '1';
+data_in  <= data_in_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);
+data_out_IPs(conv_integer(row_0(IPADD_POS downto 0))-1) <= data_out ;
+add <= add_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);
+W_enable <= W_enable_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);
+R_enable  <= R_enable_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);
+generic_en <= generic_en_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);																		
+
+\end{lstlisting}
 \clearpage
 \section{Connecting the signals}
 The IP core Manager has the duty to make possible the exchanging of data between the CPU (buffer) and the selected IP core, in both direction i.e. from CPU to the IP core and from the IP core to CPU.
