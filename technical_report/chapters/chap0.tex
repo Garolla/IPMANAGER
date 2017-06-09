@@ -1,0 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This will help you in writing your homebook
+% Remember that the character % is a comment in latex
+%
+% chapter 1
+\chapter{Introduction}
+\label{chap0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% you can organize a chapter using sections -> \section{Simulating an inverter}
+% or subsections -> \subsection{simulating a particular type of inverter}
+
+%%%%%%   First section
+\section{Multi IP-core systems and the IP-core Manager}
+A multi IP-core system is a component with two or more independent unit each one designed for a different purpose. 
+These cores are deployed into the FPGA and are used for enhancing performance, implementing functions, and simultaneous processing of multiple tasks.
+However due to the increasing complexity, a IP core manager is required to handle context switching, scheduling, and interrupt handling.\\
+The first and basic task for this core manager is to enable the connection between the CPU and the selected core. More in particular this means exchanging the data in the required time as described in the protocol. The CPU can talk to one and only one core, therefore the core manager will disregard other cores whether they finished or not their task.\\
+The exchanging of data is done by a means of a dual-port buffer (64x16).
+The buffer is the component that communicate the physical address of the interested core from the CPU to the IP-core manager (and viceversa) and exchange the data between the CPU and the IP-cores. \\
+Even for the data buffer we have some constraints: only one core at a time can talk to the buffer. This requirement is satisfied thanks to the IP manager.\\
+As for the priority of the cores, we put the most priority core at $ port_{0} $ and the least one to the last port, i.e. $ port_{n-1} $.
