@@ -40,7 +40,7 @@ architecture STRUCTURAL of TOP_ENTITY is
 begin
 
 	-- IMPORTANT: Change BEHAVIOURAL to STRUCTURAL and viceversa to test the different architecture
-	data_buff: entity work.DATA_BUFFER(BEHAVIOURAL)
+	data_buff: entity work.DATA_BUFFER(STRUCTURAL)
 		port map(	rst				=>	reset,
 					row_0			=>	row_0,
 					--PORT_0
