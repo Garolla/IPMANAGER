@@ -1,7 +1,7 @@
 \chapter{System's architecture}
 
 \section{Components}
-For this project, 3 main components are reuired (fig. \ref{00fig}):
+For this project, 3 main components are required (fig. \ref{00fig}):
 \begin{enumerate}
 	\item \textbf{IP-core Manager}:it's the main element of this architecture and its main goal is to handle the complexity of this system. It has to provide the correct exchange of data between the target IP-core and the CPU. Moreover it has to handle the interrupt service routine.
 	\item \textbf{Data Buffer}:it's a dual port buffer that stores the data coming both from the CPU and the selected IP-core. It also enable the communication of the desired transaction from the CPU to the IP-core Manager by means of the $ row0 $ which is always read from the IP-core Manager
