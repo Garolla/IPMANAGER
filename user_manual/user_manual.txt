@@ -45,7 +45,7 @@ To do this, the CPU must initiate a transaction when it is ready to exchange dat
     Generic_en: 1
 
     NOTE: generic_en must be set to 1 whenever communication with the IP manager is in progress.
-    
+
     NOTE: only one IP can be enabled at any time. If a new IP is enabled, all other IPs will be disabled, even if their transaction was not explicitly closed.
 
 
@@ -78,13 +78,60 @@ To write data, set the signals as follows:
 To end a transaction, follow the steps in 3.1, and set bit 12 of the instruction packet to 0. The IP core will be unselected and disabled.
 
 
-4. INTERFACE TO THE IP CORES
+3.5 SERVICING INTERRUPTS
+
+The CPU can receive  interrupt requests from the cores. In this event, the "interrupt" signal will be raised. The IP manager will only forward interrupts when no transactions initiated by the CPU are currently active. The address of the IP requesting the interrupt is written in address row 0 by the IP manager.
+
+When the CPU is ready to service an interrupt, perform the following steps:
+
+    read address row 0 to find out the address of the requesting core.
+    Start a new transaction, selecting the requesting IP. Follow the steps in 3.1, with the only difference being that bit 13 of the control word must be set to 1. This is the ACK bit.
+    The IP core will now perform its routines. Refer to the IP core's documentation.
+    The transaction can be closed as in 3.4.
+
+
+4.   INTERFACE TO THE IP CORES
 
 IP cores designed for the multi-IP core system must comply to the following interface:
 
-
 { incollate qui la lista delle porte dell'IP manager }
 
+Note that the maximum number of IPs that can be managed by the system is 2^12. Addresses are assigned sequentially from 1 to N = 2^12. 
+
+The IP cores have at their disposal the system's clock and reset signals. It is recommended that the IP's processes are made sensitive to the enable signal and that a suitable idle routine is written for when the core is disabled.
+
+When the core is enabled, it can perform read and write operations. When the core is disabled, it can send interrupts to the CPU to request to be enabled.
 
 
+4.1 READING DATA FROM THE CPU
 
+When it is enabled, IP can receive data from the CPU by requesting a read from the IP manager. The range of addresses that the IP is expecting to read from can be chosen freely. However care must be taken to assign different r/w addresses to each IP in use, to avoid race conditions. The chosen addresses must be documented and communicated to the software designer.
+
+In order to read data, set signals as follows:
+
+    address: the IP's read address
+    W_enable: 0
+    R_enable: 1
+    Generic_en: 1
+
+NOTE: the IP manager inserts a 1-stage delay between the IP core and the CPU. The requested data will effectively appear on data_out with a delay of 1 clock cycle. The IP developer is invited to pipeline read requests or otherwise insert idle cycles to keep this delay into account.
+
+
+4.2 WRITING DATA TO THE CPU
+
+The write address for the core can also be freely assigned, with the same caveats as in 4.1. To write data, set the signals as follows:
+
+    Data_in: the data to be written
+    Address: the IP's write address
+    W_enable: 1
+    R_enable: 0
+    Generic_en: 1
+
+
+4.3 REQUESTING AN INTERRUPT
+
+When the core is disabled, it is not able to read or write to the buffer. Then, it can send interrupts to the CPU to request to be enabled. The IP manager will only consider interrupt requests one at a time, and it assigns a static priority to the IPs according to their address; the lowest address has the highest priority. 
+
+To request an interrupt, raise the "interrupt" signal. The signal should remain high until the ACK signal is raised by the IP manager. 
+
+Once the CPU is ready to service the interrupt and no interrupts with higher priority are active, the IP manager will raise the "ack" signal. At the same time, the IP's select signal becomes high. When the IP receives the ACK, it should unset the interrupt signal; then it can perform its operations as during a normal transaction.
