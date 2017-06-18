@@ -1,0 +1,9 @@
+\chapter{Future developments}\label{future}
+\section{Asynchronous is the new synchronous}
+As we have seen in the previous chapters a synchronous IP manager introduces several clock cycle of latency in the overall transaction between CPU and the cores.\\
+A possible future devolpment to remove this latency is to change from the current clock based, sequential implementation to a full combinational one.
+\section{Configurable manager}
+We have reserved the address 0 for the IP manager, in case the CPU wants to \textit{configure} it. Which possible configurations are available? None! That's up to you to implement it. 
+\section{Interface for the IP cores}
+Every IP in the world is designed with a custom interface, and they are usually all different.\\
+A possible future developments is to analyze if it is possible to realize an hardware component capable of adapting whatever IP interface to the interface compliant with this architecture and described in this document.
