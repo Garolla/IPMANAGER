@@ -1,0 +1,50 @@
+USE CASE SCENARIO 
+
+EXAMPLE 1: ADDER IP
+
+A user develops a simple adder. The adder receives two operands from the CPU, adds them, and delivers the result back to CPU. 
+
+The following buffer positions are reserved for the adder:
+	- Address row 1: OP1 
+	- Address row 2: OP2
+	- Address row 3: Result
+
+The CPU writes the operands to rows 1 and 2, then enables the core, selecting IP address 1.
+
+The adder core is an FSM cycling through a few states:
+
+	1. IDLE: This state is entered at reset, and the adder stays in IDLE whenever enable = 0. In this state, the core continuously requests to read OP1 from address row 1; this way one clock cycle is gained when starting operation since one of the operands has already been requested.
+
+	2. READ_OPERAND2 : This state is entered as soon as enable becomes 1. The core requests to read OP2 from address row 2.
+
+	3. WRITE_OPERAND1: During this cycle, OP1 is received on data_out and stored in a local register.
+	
+	4. WRITE_RESULT: OP2 is received on data out. The adder directly computes the results and writes it to the buffer's data_in at address row 3. After this state, the core returns to IDLE.
+
+In order to complete the sum, the CPU keeps the transaction open for 4 clock cycles. After this time is elapsed, the CPU can read address row 3 and retrieve the result. 
+
+EXAMPLE 2: ACCUMULATOR IP
+
+A user develops a second core that accumulates the value of the data found in memory for 12 clock cycles. The accumulator should work while the transaction is off and send an interrupt when the result is ready; this operation is similar to the behavior of a sensor. This IP is used at the same time as the adder IP from example 1.
+In order to avoid conflicts with the adder, buffer positions are allocated as follows:
+
+	- Address row 4: OP1 
+	- Address row 5: Result
+
+Since this core is the second to be loaded in the FPGA, it is assigned IP address 2. The CPU writes the first value to be accumulated into address 4, then selects and enables the core. 
+
+The accumulator core is an FSM cycling through states:
+
+	1. IDLE: This state is entered at reset, and the adder stays in IDLE whenever enable = 0. In this state, the core continuously requests to read OP1 from address row 4.
+
+	2. OP_START: This state is entered as soon as enable becomes 1. The request to read OP1 has already been sent, but the data_out signal is not yet ready. The IP initializes a counter to 12. 
+
+	3: ACCUMULATE: data_out becomes valid, and OP1 is saved in a local register and in the accumulate register. The CPU can close the transaction.
+	While in this state, the IP continuously adds OP1 to the ACC register and decrements the counter every clock cycle. Only once the counter rolls down to 0, it sets interrupt to 1 and continues to state 4.
+	
+	4. WAIT_ACK: The interrupt has been sent on the last iteration of state 3. This state polls the ack signal every clock cycle. 
+When the CPU is ready to read the result, it opens a transaction with the accumulator core while setting the ACK bit in the control packet. Once ack becomes 1, the IP sets interrupt to 0 and proceeds to state 5.
+
+	5. WRITE_RES: The result is written to address row 5. After this state, the IP returns to IDLE.
+
+In order to initiate operation, the CPU keeps the transaction open for 2 clock cycles to allow for the read of OP1. When reading the result, the transaction stays open for 3 clock cycles, after which the result appears in the buffer.
