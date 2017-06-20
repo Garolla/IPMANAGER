@@ -3,3 +3,4 @@
 \item To reduce the latency, it's better if the synchronous IP cores start with the interface signals ``loaded'' with the address of the first data to read.
 \item Another way to reduce the latency is to have the IP cores working on the falling edge of the clock instead of the rising edge like does the IP manager.
 \item Synthesizer like Vivado and Lattice don't like very much asynchronous memories like our Data Buffer. Usually they automatically introduce latches. Be aware that these can introduce differences between the simulation behaviour and the behaviour on FPGA.
+\end{itemize}
