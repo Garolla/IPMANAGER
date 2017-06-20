@@ -15,7 +15,7 @@ Main tasks of the IP Manager are the correct exchange of data between the target
 	As shown in the figure \ref{00fig}, the IP manager indirectly communicates with the CPU through a dual port data buffer. This buffer has a standard interface and it is used to redirect data to/from the IP core selected.
 	Whenever the CPU wants to start a transaction, it has to write some control bits (explained in section \ref{transaction}) at address 0 ($ row0 $) of the data buffer.
 	The data in this address is always read from the IP Manager to speed-up the routing process whenever a new transaction begins.\\
-\subsection{Data Buffer interface}
+\subsection{Data Buffer interface}\label{bufinter}
 This data buffer has a standard interface.
 The signals for this components (whether they come from the CPU or from from the IP core Manager of from both of them) has the following function: 
 \begin{itemize}
@@ -27,7 +27,7 @@ The signals for this components (whether they come from the CPU or from from the
 		\item \textbf{reset}: input port, it brings the buffer to the reset state. 
 		\item \textbf{row\_0}: output port, it reflects any change in the row 0 of the buffer. 
 \end{itemize}
-\subsection{IP core interface}
+\subsection{IP core interface} \label{IPinter}
 	As for a generic $ x $ IP core interface, we have the following signals:
 	\begin{itemize}
 	\item \textbf{data\_in\_IPs(x)}:data from the $ x $ IP-core to the CPU/Data buffer.
@@ -42,7 +42,7 @@ The signals for this components (whether they come from the CPU or from from the
 \end{itemize}
 	\begin{figure}[h]
 		\centering
-		\includegraphics[width=0.95\textwidth]{chapters/figures/interface.pdf}  
+		\includegraphics[width=0.95\textwidth]{chapters/figures/Interface.pdf}  
 		\caption{System architecture}
 		\label{00fig}
 	\end{figure}
@@ -87,4 +87,4 @@ The signals for this components (whether they come from the CPU or from from the
 		\hline
 	\end{tabular}
 \end{center}
-For a better understanding f the transaction mechanism, please see chapter \ref{usecase}.
+For a better understanding of the transaction mechanism, please see chapter \ref{usecase}.

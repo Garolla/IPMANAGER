@@ -1,7 +1,161 @@
-\chapter{Use case scenario}\label{usecase}
+\chapter{User Manual}\label{usecase}
+
+\section{Introduction}
+The IP-core manager is an interface for the integration of multiple custom IP designs in the secube platform. It handles context switching, interrupt handling and scheduling, guaranteeing the correct exchange of data between the target IP and the CPU.
+\vspace{0.5cm}\\
+This guide describes the interface of the IP core manager, and is meant to assist developers and hardware designers in correctly implementing custom IP cores as well as the software that interacts with them.
 
 
-\section{EXAMPLE 1: ADDER IP}
+%\section{Feature overview}
+%CPU-initiated transactions (only one IP enabled at a time)\\
+%Buffered R/W data flow\\
+%Interrupt functionality\\
+
+
+\section{Interface to the CPU}
+
+The CPU talks to the IP-Core manager by the means of the data buffer. In the picture \ref{00fig}, you can see the interface of the Data buffer connected to the CPU.\\
+
+
+After the cores are synthesized and running, the CPU can enable or disable the cores, load input data into them and read their output through the IP manager.
+\vspace{0.5cm}\\
+To do this, the CPU must initiate a transaction when it is ready to exchange data with a chosen core. 
+
+
+\subsection{Initiating a transaction} \label{3.1}
+Initiate or end a transaction by writing a 16-bit data packet at address row 0.\\To begin the transaction, bit 12 must be set (=1); to end the transaction, it must be unset (=0).
+	\begin{center}
+		\begin{tabular}{ | l | l |  l | l | }
+			
+			15  \qquad  \qquad 14 & 13 & 12 & 11 \qquad \qquad 0 \\ \hline
+			UNUSED & INT & B/E & IP ADDR\\ \hline
+			
+			
+			\hline
+		\end{tabular}
+	\end{center}
+\begin{center}
+	\begin{tabular}{ | c | p{7 cm} |  l |}
+		\hline
+		Bit(s) & Purpose & Value(s)  \\ \hline
+		Bit 15 & unused  & unused 
+		\\ \hline
+		Bit 14 & unused  & unused\\
+		\hline
+		Bit 13 & Interrupt ACK from the CPU   & Normal = 0, Interrupt  =  1
+		\\ \hline
+		
+		Bit 12 & Signals the begin/end of a transaction & Begin  = 1, End = 0 
+		\\ \hline
+		
+		
+		
+		Bit 11-0 & The physical address of the target IP &
+		From 0 up to N-1  \\
+		
+		
+		
+		\hline
+	\end{tabular}
+\end{center}
+\vspace{0.5cm}
+Specify the address of the target IP. Addresses are assigned sequentially from 1 to N.
+\vspace{0.5cm}\\
+To write the data packet, set the signals as follows:\vspace{0.5cm}\\
+	\begin{tabular}{ p{0.7cm} p{14 cm} }
+		&\textit{Data}: your instruction packet in the above format\\
+&\textit{Address}: 0\\
+&\textit{W\_enable}: 1\\
+&\textit{R\_enable}: 0 \\
+&\textit{Generic\_en}: 1
+\end{tabular}\vspace{0.5cm}\\
+\textbf{NOTE}: \textit{generic\_en} must be set to 1 whenever communication with the IP manager is in progress.\vspace{0.5cm}\\
+\textbf{NOTE}: only one IP can be enabled at any time. If a new IP is enabled, all other IPs will be disabled, even if their transaction was not explicitly closed.
+
+
+\subsection{Writing data to the IP core} \label{3.2}
+
+Once a core is selected, the IP manager becomes transparent to read/write operations between core and CPU. Each core has access to a range of addresses which is freely assigned by the IP core's designer. Then, it is simply a matter of reading and writing to these addresses according to the specifications of the selected core.\vspace{0.5cm}\\
+To write data, set the signals as follows:\vspace{0.5cm}\\
+\begin{tabular}{ p{0.7cm} p{14 cm} }
+& \textit{Data}: the 16-bit data to be sent\\
+&\textit{Address}: the IP's read address (refer to the IP core's documentation)\\
+&\textit{W\_enable}: 1\\
+&\textit{R\_enable}: 0 \\
+&\textit{Generic\_en}: 1
+\end{tabular}
+
+\subsection{Reading data from the IP core} \label{3.3}
+
+To write data, set the signals as follows:\\
+\vspace{0.5cm}
+\begin{tabular}{ p{0.7cm} p{14 cm} }\\
+&\textit{Data}: don't care\\
+&\textit{Address}: the IP's write address (refer to the IP core's documentation)\\
+&\textit{W\_enable}: 0\\
+&\textit{R\_enable}: 1\\
+&\textit{Generic\_en}: 1\end{tabular}
+
+\subsection{Ending a transaction} \label{3.4}
+To end a transaction, follow the steps in \ref{3.1}, and set bit 12 of the instruction packet to 0. The IP core will be unselected and disabled.
+
+
+\subsection{Servicing interrupts} \label{3.5}
+The CPU can receive  interrupt requests from the cores. In this event, the \textit{interrupt} signal will be raised. The IP manager will only forward interrupts when no transactions initiated by the CPU are currently active. The address of the IP requesting the interrupt is written in address row 0 by the IP manager.
+\vspace{0.5cm}\\
+When the CPU is ready to service an interrupt, perform the following steps:
+\begin{enumerate}
+\item Read address row 0 to find out the address of the requesting core.
+\item Start a new transaction, selecting the requesting IP. Follow the steps in \ref{3.1}, with the only difference being that bit 13 of the control word must be set to 1. This is the ACK bit.
+\item The IP core will now perform its routines. Refer to the IP core's documentation.
+\item The transaction can be closed as in \ref{3.4}.
+\end{enumerate}
+
+
+
+\section{Interface to the IP cores}\label{4}
+
+IP cores designed for the multi-IP core system must comply to the interface described in section \ref{IPinter} (see figure \ref{00fig}).\\
+Note that the maximum number of IPs that can be managed by the system is $ 2^{12} $. Addresses are assigned sequentially from $ 1 $ to $ N = 2^{12} $.\vspace{0.5cm}\\
+The IP cores have at their disposal the system's clock and reset signals. It is recommended that the IP's processes are made sensitive to the enable signal and that a suitable idle routine is written for when the core is disabled.\vspace{0.5cm}\\
+When the core is enabled, it can perform read and write operations. When the core is disabled, it can send interrupts to the CPU to request to be enabled.
+
+
+\subsection{Reading data from the cpu}\label{4.1}
+When it is enabled, IP can receive data from the CPU by requesting a read from the IP manager. The range of addresses that the IP is expecting to read from can be chosen freely. However care must be taken to assign different r/w addresses to each IP in use, to avoid race conditions. The chosen addresses must be documented and communicated to the software designer.\vspace{0.5cm}\\
+In order to read data, set signals as follows:\vspace{0.1cm}\\
+\begin{tabular}{ p{0.7cm} p{14 cm} }\\
+&\textit{address}: the IP's read address\\
+&\textit{W\_enable}: 0\\
+&\textit{R\_enable}: 1\\
+&\textit{Generic\_en}: 1\\
+\end{tabular}
+\vspace{0.2cm}\\
+\textbf{NOTE}: the IP manager inserts a 1-stage delay between the IP core and the CPU. The requested data will effectively appear on \textit{data\_out} with a delay of 1 clock cycle. The IP developer is invited to pipeline read requests or otherwise insert idle cycles to keep this delay into account.
+\subsection{Writing data to the cpu} \label{4.2}
+The write address for the core can also be freely assigned, with the same caveats as in \ref{4.1}. \vspace{0.5cm}\\To write data, set the signals as follows:\vspace{0.1cm}\\
+\begin{tabular}{ p{0.7cm} p{14 cm} }\\
+	&\textit{Data\_in}: the data to be written\\
+&\textit{Address}: the IP's write address\\
+&\textit{W\_enable}: 1\\
+&\textit{R\_enable}: 0\\
+&\textit{Generic\_en}: 1\\
+\end{tabular}
+
+\subsection{Requesting an interrupt} \label{4.3}
+When the core is disabled, it is not able to read or write to the buffer. Then, it can send interrupts to the CPU to request to be enabled. The IP manager will only consider interrupt requests one at a time, and it assigns a static priority to the IPs according to their address; the lowest address has the highest priority. \\
+\bigskip
+To request an interrupt, raise the "interrupt" signal. The signal should remain high until the ACK signal is raised by the IP manager.\\ 
+\bigskip
+Once the CPU is ready to service the interrupt and no interrupts with higher priority are active, the IP manager will raise the \textit{ack} signal. At the same time, the IP's select signal becomes high. When the IP receives the ACK, it should unset the interrupt signal; then it can perform its operations as during a normal transaction.
+
+
+
+
+\section{Use case scenario}
+
+
+\subsection{example 1: adder IP}
 
 A user develops a simple adder. The adder receives two operands from the CPU, adds them, and delivers the result back to CPU. \\
 
@@ -26,7 +180,7 @@ The adder core is an FSM cycling through a few states:
 \end{enumerate}
 In order to complete the sum, the CPU keeps the transaction open for 4 clock cycles. After this time is elapsed, the CPU can read address row 3 and retrieve the result. 
 
-\section{EXAMPLE 2: ACCUMULATOR IP}
+\subsection{example 2: accumulator IP}
 
 A user develops a second core that accumulates the value of the data found in memory for 12 clock cycles. The accumulator should work while the transaction is off and send an interrupt when the result is ready; this operation is similar to the behavior of a sensor. This IP is used at the same time as the adder IP from example 1.\\
 In order to avoid conflicts with the adder, buffer positions are allocated as follows:

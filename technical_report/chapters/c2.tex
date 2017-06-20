@@ -31,20 +31,20 @@ This component is active during the rising edge of the clock and when the CPU wa
 	\caption{Enabling the right IP core} 
 	\label{fig:en_IP}
 \end{figure}
-\bigskip
-This is the VHDL code that perform this task
-\begin{lstlisting}
--- Begin ( or continue ) transaction:
-if row_0(BE_POS) = '1' then											
-enable_IPs(conv_integer(row_0(IPADD_POS downto 0))-1) <= '1';
-data_in  <= data_in_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);
-data_out_IPs(conv_integer(row_0(IPADD_POS downto 0))-1) <= data_out ;
-add <= add_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);
-W_enable <= W_enable_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);
-R_enable  <= R_enable_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);
-generic_en <= generic_en_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);																		
+%\bigskip
+%This is the VHDL code that perform this task
+%\begin{lstlisting}
+%-- Begin ( or continue ) transaction:
+%if row_0(BE_POS) = '1' %then											
+%enable_IPs(conv_integer(row_0(IPADD_POS downto 0))-1) <= '1';
+%data_in  <= data_in_IPs(conv_integer(row_0(IPADD_POS downto %0))-1);
+%data_out_IPs(conv_integer(row_0(IPADD_POS downto 0))-1) <= data_out ;
+%add <= add_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);
+%W_enable <= W_enable_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);
+%R_enable  <= R_enable_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);
+%generic_en <= generic_en_IPs(conv_integer(row_0(IPADD_POS downto 0))-1);																		
 
-\end{lstlisting}
+%\end{lstlisting}
 \clearpage
 \section{Connecting the signals}
 The IP core Manager has the duty to make possible the exchanging of data between the CPU (buffer) and the selected IP core, in both direction i.e. from CPU to the IP core and from the IP core to CPU.

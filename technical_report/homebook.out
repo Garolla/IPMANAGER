@@ -10,11 +10,23 @@
 \BOOKMARK [1][]{section.3.1}{Enabling the right IP}{chapter.3}% 10
 \BOOKMARK [1][]{section.3.2}{Connecting the signals}{chapter.3}% 11
 \BOOKMARK [1][]{section.3.3}{Interrupt Handler}{chapter.3}% 12
-\BOOKMARK [0][]{chapter.4}{Use case scenario}{}% 13
-\BOOKMARK [1][]{section.4.1}{EXAMPLE 1: ADDER IP}{chapter.4}% 14
-\BOOKMARK [1][]{section.4.2}{EXAMPLE 2: ACCUMULATOR IP}{chapter.4}% 15
-\BOOKMARK [0][]{chapter.5}{Guidelines}{}% 16
-\BOOKMARK [0][]{chapter.6}{Future developments}{}% 17
-\BOOKMARK [1][]{section.6.1}{Asynchronous is the new synchronous}{chapter.6}% 18
-\BOOKMARK [1][]{section.6.2}{Configurable manager}{chapter.6}% 19
-\BOOKMARK [1][]{section.6.3}{Interface for the IP cores}{chapter.6}% 20
+\BOOKMARK [0][]{chapter.4}{User Manual}{}% 13
+\BOOKMARK [1][]{section.4.1}{Introduction}{chapter.4}% 14
+\BOOKMARK [1][]{section.4.2}{Interface to the CPU}{chapter.4}% 15
+\BOOKMARK [2][]{subsection.4.2.1}{Initiating a transaction}{section.4.2}% 16
+\BOOKMARK [2][]{subsection.4.2.2}{Writing data to the IP core}{section.4.2}% 17
+\BOOKMARK [2][]{subsection.4.2.3}{Reading data from the IP core}{section.4.2}% 18
+\BOOKMARK [2][]{subsection.4.2.4}{Ending a transaction}{section.4.2}% 19
+\BOOKMARK [2][]{subsection.4.2.5}{Servicing interrupts}{section.4.2}% 20
+\BOOKMARK [1][]{section.4.3}{Interface to the IP cores}{chapter.4}% 21
+\BOOKMARK [2][]{subsection.4.3.1}{Reading data from the cpu}{section.4.3}% 22
+\BOOKMARK [2][]{subsection.4.3.2}{Writing data to the cpu}{section.4.3}% 23
+\BOOKMARK [2][]{subsection.4.3.3}{Requesting an interrupt}{section.4.3}% 24
+\BOOKMARK [1][]{section.4.4}{Use case scenario}{chapter.4}% 25
+\BOOKMARK [2][]{subsection.4.4.1}{example 1: adder IP}{section.4.4}% 26
+\BOOKMARK [2][]{subsection.4.4.2}{example 2: accumulator IP}{section.4.4}% 27
+\BOOKMARK [0][]{chapter.5}{Guidelines}{}% 28
+\BOOKMARK [0][]{chapter.6}{Future developments}{}% 29
+\BOOKMARK [1][]{section.6.1}{Asynchronous is the new synchronous}{chapter.6}% 30
+\BOOKMARK [1][]{section.6.2}{Configurable manager}{chapter.6}% 31
+\BOOKMARK [1][]{section.6.3}{Interface for the IP cores}{chapter.6}% 32

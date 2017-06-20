@@ -11,11 +11,23 @@
 \contentsline {section}{\numberline {3.1}Enabling the right IP}{6}{section.3.1}
 \contentsline {section}{\numberline {3.2}Connecting the signals}{8}{section.3.2}
 \contentsline {section}{\numberline {3.3}Interrupt Handler}{10}{section.3.3}
-\contentsline {chapter}{\numberline {4}Use case scenario}{12}{chapter.4}
-\contentsline {section}{\numberline {4.1}EXAMPLE 1: ADDER IP}{12}{section.4.1}
-\contentsline {section}{\numberline {4.2}EXAMPLE 2: ACCUMULATOR IP}{13}{section.4.2}
-\contentsline {chapter}{\numberline {5}Guidelines}{15}{chapter.5}
-\contentsline {chapter}{\numberline {6}Future developments}{16}{chapter.6}
-\contentsline {section}{\numberline {6.1}Asynchronous is the new synchronous}{16}{section.6.1}
-\contentsline {section}{\numberline {6.2}Configurable manager}{16}{section.6.2}
-\contentsline {section}{\numberline {6.3}Interface for the IP cores}{16}{section.6.3}
+\contentsline {chapter}{\numberline {4}User Manual}{12}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{12}{section.4.1}
+\contentsline {section}{\numberline {4.2}Interface to the CPU}{12}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Initiating a transaction}{12}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Writing data to the IP core}{13}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Reading data from the IP core}{14}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Ending a transaction}{14}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}Servicing interrupts}{14}{subsection.4.2.5}
+\contentsline {section}{\numberline {4.3}Interface to the IP cores}{14}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Reading data from the cpu}{15}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Writing data to the cpu}{15}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Requesting an interrupt}{15}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Use case scenario}{16}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}example 1: adder IP}{16}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}example 2: accumulator IP}{17}{subsection.4.4.2}
+\contentsline {chapter}{\numberline {5}Guidelines}{19}{chapter.5}
+\contentsline {chapter}{\numberline {6}Future developments}{20}{chapter.6}
+\contentsline {section}{\numberline {6.1}Asynchronous is the new synchronous}{20}{section.6.1}
+\contentsline {section}{\numberline {6.2}Configurable manager}{20}{section.6.2}
+\contentsline {section}{\numberline {6.3}Interface for the IP cores}{20}{section.6.3}
