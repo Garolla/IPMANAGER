@@ -24,8 +24,8 @@
 \contentsline {subsection}{\numberline {4.3.2}Writing data to the cpu}{15}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}Requesting an interrupt}{15}{subsection.4.3.3}
 \contentsline {section}{\numberline {4.4}Use case scenario}{16}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}example 1: adder IP}{16}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}example 2: accumulator IP}{17}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.1}Example 1: adder IP}{16}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Example 2: accumulator IP}{17}{subsection.4.4.2}
 \contentsline {chapter}{\numberline {5}Guidelines}{19}{chapter.5}
 \contentsline {chapter}{\numberline {6}Future developments}{20}{chapter.6}
 \contentsline {section}{\numberline {6.1}Asynchronous is the new synchronous}{20}{section.6.1}

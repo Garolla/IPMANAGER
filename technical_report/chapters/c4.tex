@@ -155,7 +155,7 @@ Once the CPU is ready to service the interrupt and no interrupts with higher pri
 \section{Use case scenario}
 
 
-\subsection{example 1: adder IP}
+\subsection{Example 1: adder IP}
 
 A user develops a simple adder. The adder receives two operands from the CPU, adds them, and delivers the result back to CPU. \\
 
@@ -180,7 +180,7 @@ The adder core is an FSM cycling through a few states:
 \end{enumerate}
 In order to complete the sum, the CPU keeps the transaction open for 4 clock cycles. After this time is elapsed, the CPU can read address row 3 and retrieve the result. 
 
-\subsection{example 2: accumulator IP}
+\subsection{Example 2: accumulator IP}
 
 A user develops a second core that accumulates the value of the data found in memory for 12 clock cycles. The accumulator should work while the transaction is off and send an interrupt when the result is ready; this operation is similar to the behavior of a sensor. This IP is used at the same time as the adder IP from example 1.\\
 In order to avoid conflicts with the adder, buffer positions are allocated as follows:

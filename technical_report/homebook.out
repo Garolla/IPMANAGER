@@ -23,8 +23,8 @@
 \BOOKMARK [2][]{subsection.4.3.2}{Writing data to the cpu}{section.4.3}% 23
 \BOOKMARK [2][]{subsection.4.3.3}{Requesting an interrupt}{section.4.3}% 24
 \BOOKMARK [1][]{section.4.4}{Use case scenario}{chapter.4}% 25
-\BOOKMARK [2][]{subsection.4.4.1}{example 1: adder IP}{section.4.4}% 26
-\BOOKMARK [2][]{subsection.4.4.2}{example 2: accumulator IP}{section.4.4}% 27
+\BOOKMARK [2][]{subsection.4.4.1}{Example 1: adder IP}{section.4.4}% 26
+\BOOKMARK [2][]{subsection.4.4.2}{Example 2: accumulator IP}{section.4.4}% 27
 \BOOKMARK [0][]{chapter.5}{Guidelines}{}% 28
 \BOOKMARK [0][]{chapter.6}{Future developments}{}% 29
 \BOOKMARK [1][]{section.6.1}{Asynchronous is the new synchronous}{chapter.6}% 30

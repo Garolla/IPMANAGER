@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.9)  20 JUN 2017 20:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.9)  20 JUN 2017 20:41
 entering extended mode
 **./homebook.tex
 (homebook.tex
@@ -985,7 +985,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 243.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 243.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 243.
 Package rerunfilecheck Info: File `homebook.out' has not changed.
-(rerunfilecheck)             Checksum: 3AFC0154B63481B75FC0E6033D8DC9B9;2187.
+(rerunfilecheck)             Checksum: 0F4101182A35DD48AA2A3025A64C269D;2187.
  ) 
 Here is how much of TeX's memory you used:
  11661 strings out of 493634
@@ -1004,7 +1004,7 @@ public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
 fonts/cm/cmss17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on homebook.pdf (24 pages, 728096 bytes).
+Output written on homebook.pdf (24 pages, 728378 bytes).
 PDF statistics:
  377 PDF objects out of 1000 (max. 8388607)
  79 named destinations out of 1000 (max. 500000)
